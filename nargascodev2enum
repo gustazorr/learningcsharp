@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HelloWorld
+{
+    internal class Program
+    {
+        // cria enum e define o primeiro valor como 1 para seguir a ordem '1, 2'
+        enum Opcao {Sim = 1, Não}
+        static void Main(string[] args)
+        {
+            // array com os nomes dos produtos
+            string[] nargas = new string[5] {
+                "Nargas do Inter", // 0
+                "Nargas do Grêmio", // 1
+                "Nargas do Palmeiras", // 2
+                "Nargas do Flamengo", // 3
+                "Nargas do Bragantino" // 4
+            };
+            // array com preço dos produtos
+            int[] nargaspreco = new int[5] {800, 3, 50, 10, 1100};
+
+            // escreve e quebra a linha
+            Console.WriteLine("Você quer 20% de desconto?");
+            Console.WriteLine("1 - Sim\n2 - Não");
+
+            // cria uma variável que pega o valor do read e converte resposta string em resposta int
+            int index = int.Parse(Console.ReadLine());
+            Opcao resposta = (Opcao)index;
+
+
+            // caso a resposta for "Sim" faça uma função, se for "Não" faça outra, se não for nenhuma das duas dá um aviso.
+            switch (resposta)
+            {
+                case Opcao.Sim:
+                    Console.WriteLine("Aqui está!");
+                    GerarPreco(nargaspreco[0], nargas[0]);
+                    GerarPreco(nargaspreco[1], nargas[1]);
+                    GerarPreco(nargaspreco[2], nargas[2]);
+                    GerarPreco(nargaspreco[3], nargas[3]);
+                    GerarPreco(nargaspreco[4], nargas[4]);
+                    break;
+                case Opcao.Não:
+                    Console.WriteLine("Ok então.");
+                    SemDesconto(nargaspreco[0], nargas[0]);
+                    SemDesconto(nargaspreco[1], nargas[1]);
+                    SemDesconto(nargaspreco[2], nargas[2]);
+                    SemDesconto(nargaspreco[3], nargas[3]);
+                    SemDesconto(nargaspreco[4], nargas[4]);
+                    break;
+                default: 
+                    Console.WriteLine("Essa resposta não é possível apenas 1 ou 2.");
+                    break;
+            }
+
+            // está sendo usado como pause no console (ele está esperando enter para terminar de ler o código) 
+            Console.ReadLine();
+        }
+        static void GerarPreco(int preco, string nome)
+        {
+            // preço - 20%
+            float precodesconto = preco - (preco * 0.2f);
+            Console.WriteLine();
+            Console.WriteLine("Nome do produto: " + nome);
+            Console.WriteLine("Valor(R$): " + precodesconto);
+        }
+
+        static void SemDesconto(int preco, string nome)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Nome do produto: " + nome);
+            Console.WriteLine("Valor(R$): " + preco);
+        }
+    }
+}
