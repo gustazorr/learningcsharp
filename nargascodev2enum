@@ -10,6 +10,7 @@ namespace HelloWorld
     {
         // cria enum e define o primeiro valor como 1 para seguir a ordem '1, 2'
         enum Opcao {Sim = 1, Não}
+
         static void Main(string[] args)
         {
             // array com os nomes dos produtos
